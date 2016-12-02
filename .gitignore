@@ -38,3 +38,6 @@ nosetests.xml
 
 # OS Files
 .DS_Store
+
+# secret
+secret.py
