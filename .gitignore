@@ -44,3 +44,6 @@ secret.py
 # dist dir
 dist/*
 !dist/.keep
+
+# others
+output.json
