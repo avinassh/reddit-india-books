@@ -90,13 +90,13 @@ def get_goodreads_data(books):
         goodread_books.append(book)
         time.sleep(1)
     my_logger.debug('Fetching book details from Goodreads is complete')
-    my_logger.debug("Total books fetched: {}".format(len(books)))
+    my_logger.debug("Total books fetched: {}".format(len(goodread_books)))
     return goodread_books
 
 
 def download_book_covers(books):
     for book in books:
-        my_logger.debug("Downloading book cover for: ".format(book['name']))
+        my_logger.debug("Downloading book cover for: {}".format(book['name']))
         image_url = book['image_url']
         extention = image_url.split('.')[-1]
         image_name = "{}.{}".format(book['goodreads_id'], extention)
