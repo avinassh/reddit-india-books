@@ -54,7 +54,7 @@ def get_book_details_by_id(goodreads_id):
     except (TypeError, KeyError, ExpatError):
         return False
     keys = ['title', 'average_rating', 'ratings_count', 'description', 'url',
-            'num_pages']
+            'num_pages', 'image_url']
     book = {}
     for k in keys:
         book[k] = book_data.get(k)
@@ -70,6 +70,7 @@ def get_book_details_by_id(goodreads_id):
     else:
         authors = book_data['authors']['author']['name']
     book['authors'] = authors
+    book['goodreads_id'] = goodreads_id
     return book
 
 
