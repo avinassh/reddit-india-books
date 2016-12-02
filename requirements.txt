@@ -1,0 +1,4 @@
+Jinja2==2.8
+py-bing-search==0.2.6
+requests==2.12.3
+xmltodict==0.10.2
