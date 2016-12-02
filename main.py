@@ -1,14 +1,13 @@
 import os
-import shutil
 import time
 import json
 import logging
 import logging.handlers
 
-import requests
 from jinja2 import Environment, FileSystemLoader
 
 from goodreadsapi import get_book_details_by_name, BookNotFound
+from utils import download_image
 from settings import (BASE_DIR, IMAGES_DIR, SOURCE_FILE,
                       LOG_FILENAME, OUTPUT_FILE)
 
@@ -32,21 +31,6 @@ def set_logger():
 
 def create_images_dir():
     os.makedirs(IMAGES_DIR, exist_ok=True)
-
-
-def check_image_exists(file_name):
-    return os.path.isfile(os.path.join(IMAGES_DIR, file_name))
-
-
-def download_image(image_url, image_name):
-    if check_image_exists(file_name=image_name):
-        return
-    image_path = os.path.join(IMAGES_DIR, image_name)
-    r = requests.get(image_url, stream=True)
-    if r.status_code == 200:
-        with open(image_path, 'wb') as f:
-            r.raw.decode_content = True
-            shutil.copyfileobj(r.raw, f)
 
 
 def get_book_data(source_file=SOURCE_FILE):
