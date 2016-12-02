@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>What does Reddit India likes to read?</title>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+  <header class="header">
+    <section class="hero is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            What does Reddit India likes to read?
+          </h1>
+        </div>
+      </div>
+    </section>
+  </header>
+  <hr>
+  <section class="container">
+    {% for book in books %}
+      <article class="media">
+        <figure class="media-left">
+          <p class="image">
+            <img src="images/{{ book.image_name }}">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <a href="{{ book.url }}"><strong>{{ book.name }}</strong></a> <small>({{ book.votes }} Votes)</small>
+              <br><br>
+              {{ book.author }}, {{ book.publication_year }}, {{ book.num_pages }} pages, {{ book.average_rating }} by {{ book.ratings_count }} users
+            </p>
+            <p></p>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="content is-pulled-right">
+        <p>
+          <a class="icon" href="https://github.com/jgthms/bulma">
+            <i class="fa fa-reddit"></i>
+          </a>
+          <a class="icon" href="https://github.com/jgthms/bulma">
+            <i class="fa fa-github"></i>
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
