@@ -9,17 +9,12 @@ import requests
 from jinja2 import Environment, FileSystemLoader
 
 from goodreadsapi import get_book_details_by_name, BookNotFound
+from settings import (BASE_DIR, IMAGES_DIR, SOURCE_FILE,
+                      LOG_FILENAME, OUTPUT_FILE)
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DIST_DIR = os.path.join(BASE_DIR, 'dist')
-IMAGES_DIR = os.path.join(DIST_DIR, 'images')
-SOURCE_FILE = os.path.join(BASE_DIR, 'source.txt')
 TEMPLATE_FILE = 'template.html'
 TEMPLATE_ENVIRONMENT = Environment(
     autoescape=False, loader=FileSystemLoader(BASE_DIR), trim_blocks=False)
-# Logging settings
-LOG_DIR = os.path.join(BASE_DIR, 'logs')
-LOG_FILENAME = os.path.join(LOG_DIR, 'output_log')
 my_logger = logging.getLogger('MyLogger')
 
 
@@ -112,9 +107,8 @@ def render_template(template_filename, context):
 
 def write_output(books):
     my_logger.debug('Generating output')
-    output = os.path.join(DIST_DIR, 'index.html')
     html = render_template(TEMPLATE_FILE, context={'books': books})
-    with open(output, 'w') as f:
+    with open(OUTPUT_FILE, 'w') as f:
         f.write(html)
     my_logger.debug('Output generation done!')
     my_logger.debug('Woooooot!')
