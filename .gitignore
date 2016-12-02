@@ -6,7 +6,6 @@
 # Packages
 *.egg
 *.egg-info
-dist
 build
 eggs
 parts
@@ -41,3 +40,7 @@ nosetests.xml
 
 # secret
 secret.py
+
+# dist dir
+dist/*
+!dist/.keep
