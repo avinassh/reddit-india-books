@@ -74,6 +74,7 @@ def get_book_data(source_file=SOURCE_FILE):
 
 
 def get_goodreads_data(books):
+    goodread_books = []
     for book in books:
         search_term = "{} {}".format(book['name'], book['author'])
         my_logger.debug("Fetching book details for: {}".format(search_term))
@@ -86,10 +87,11 @@ def get_goodreads_data(books):
                 'ratings_count', 'url', 'goodreads_id']
         for key in keys:
             book[key] = book_goodreads[key]
+        goodread_books.append(book)
         time.sleep(1)
     my_logger.debug('Fetching book details from Goodreads is complete')
     my_logger.debug("Total books fetched: {}".format(len(books)))
-    return books
+    return goodread_books
 
 
 def download_book_covers(books):
